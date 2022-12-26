@@ -39,14 +39,11 @@ string dfs (int curNode, int t) {
     if (!ans[curNode].empty()) {
         return ans[curNode];
     }
-    if (t == 0) {
+    if (t == 0 || vec[curNode].empty()) {
         return (ans[curNode] = "*");
     }
-    if (res[curNode][0] < 'A' || res[curNode][1] > 'Z') {
+    if (res[curNode][0] < 'A') {
         return (ans[curNode] = to_string(vec[curNode].back()));
-    }
-    if (vec[curNode].empty()) {
-        return (ans[curNode] = "*");
     }
     int tot = 0;
     for (int x: vec[curNode]) {
@@ -54,8 +51,7 @@ string dfs (int curNode, int t) {
         if (ans[x] == "*") {
             return (ans[curNode] = "*");
         }
-        assert(!ans[x].empty());
-        tot += string_to_int(ans[x]);
+        tot += stoi(ans[x]);
     }
     return (ans[curNode] = to_string(tot));
 }
