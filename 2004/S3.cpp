@@ -15,13 +15,8 @@ using namespace std;
 const int n = 9;
 vector<int> split (string s) {
     vector<int> ans;
-    for (int i = 0; i < s.size(); i++) {
-        if (i % 3 == 2) {
-            continue;
-        }
-        if (i % 3 == 1) {
-            ans.push_back((s[i] - '0' - 1) + n * (s[i - 1] - 'A'));
-        }
+    for (int i = 1; i < s.size(); i += 3) {
+        ans.push_back((s[i] - '0' - 1) + n * (s[i - 1] - 'A'));
     }
     return ans;
 }
