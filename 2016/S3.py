@@ -35,7 +35,6 @@ for i in range(0, n - 1) :
     u, v = map(int, input().split(' '))
     adj[u].append(v)
     adj[v].append(u)
-accum = []
 if m == 2 :
     calc_depth(arr[0])
     print(d[arr[1]])
@@ -45,11 +44,9 @@ else :
     for i in range(0, n) :
         if colored[i] and d[i] > d[deepest] :
             deepest = i
-    if colored[deepest] :
-        calc_depth(deepest)
-        myMax = 0
-        for j in range(0, n) :
-            if colored[j] :
-                myMax = max(myMax, d[j])
-        accum.append(get_max(deepest, deepest)[1] - myMax)
-    print(min(accum))
+    calc_depth(deepest)
+    myMax = 0
+    for j in range(0, n) :
+        if colored[j] :
+            myMax = max(myMax, d[j])
+    print(get_max(deepest, deepest)[1] - myMax)
